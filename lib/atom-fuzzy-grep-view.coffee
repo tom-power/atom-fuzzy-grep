@@ -45,9 +45,12 @@ class GrepView extends SelectListView
   getSearchValue: ->
     unless @isFileFiltering then @filterEditorView.getText() else @tmpSearchString
 
+  getFlags: ->
+    if @runner.isCaseInsensitive() then 'gi' else 'g'
+
   foundRowItem: ($, rowContent) =>
     try
-      reg = new RegExp(@getSearchValue(), 'ig')
+      reg = new RegExp(@getSearchValue(), @getFlags())
       matched = reg.exec rowContent
     if reg and matched
       $.span ->

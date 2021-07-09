@@ -70,6 +70,9 @@ module.exports =
       atom.project.getRepositories().some (repo)=>
         @rootPath?.startsWith(repo.getWorkingDirectory()) if repo
 
+    isCaseInsensitive: ->
+      @commandString.indexOf("-i") != -1
+
     detectColumnFlag: ->
       /(ag|pt|ack|rg)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
 
