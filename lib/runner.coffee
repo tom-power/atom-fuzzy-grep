@@ -73,6 +73,9 @@ module.exports =
     isCaseInsensitive: ->
       @commandString.indexOf("-i") != -1
 
+    isWordsOnly: ->
+      @commandString.indexOf("--word-regexp") != -1
+
     detectColumnFlag: ->
       /(ag|pt|ack|rg)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
 
